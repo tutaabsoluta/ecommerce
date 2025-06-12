@@ -1,7 +1,7 @@
 export class CreateProductDto {
 
     
-  private constructor(
+  constructor(
     public readonly name: string,
     public readonly description: string,
     public readonly price: number,
@@ -9,6 +9,9 @@ export class CreateProductDto {
   ) {}
 
   static create(object: { [key: string]: any }): [string?, CreateProductDto?] {
+
+    if (!object) return ['Missing name, description, price and imageUrl', undefined]
+    
     const { name, description, price, imageUrl } = object;
 
     if (!name || name.trim().length === 0) {
