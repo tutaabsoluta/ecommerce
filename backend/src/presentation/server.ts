@@ -1,24 +1,38 @@
-import express from 'express'
-import { envs } from '../config/envs'
+import express, { Router } from 'express'
 
-export class Server{
 
+interface Options {
+    port: number,
+    routes: Router,
+}
+
+export class Server {
+
+    private readonly app = express();
+
+    private readonly routes: Router
+    private readonly port: number
 
     constructor(
-        private readonly port: number,
-        private readonly app = express(),
+        options: Options
     ) {
+
+        const { port, routes } = options;
         this.port = port
+        this.routes = routes
     }
 
 
     async start() {
         
-    
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({ extended: true }));
 
-        this.app.listen( this.port, () => {
-            console.log(`Server running on port ${ this.port }`)
-        } )
+        this.app.use(this.routes);
+
+        this.app.listen(this.port, () => {
+            console.log(`Server running on port ${this.port}`)
+        })
     }
 
 }
