@@ -3,7 +3,7 @@
 export class RegisterUserDto {
 
     constructor(
-        public readonly name: string,
+        public readonly user: string,
         public readonly email: string,
         public readonly password: string,
     ) { }
@@ -12,9 +12,9 @@ export class RegisterUserDto {
 
         if (!object) return ['Missing user, email and password', undefined]
 
-        const { name, email, password } = object;
+        const { user, email, password } = object;
 
-        if (!name) return ['Missing name'];
+        if (!user) return ['Missing user'];
 
         if (!email) return ['Missing email'];
 
@@ -25,7 +25,7 @@ export class RegisterUserDto {
         if (password.length < 8) return ['The password is too short'];
 
 
-        return [undefined, new RegisterUserDto( name, email, password )];
+        return [undefined, new RegisterUserDto( user, email, password )];
 
     }
 }
