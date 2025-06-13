@@ -1,5 +1,5 @@
 
-import { BcryptAdapter } from "../../config/bcrypt.adapter";
+import { BcryptAdapter, JwtAdapter } from "../../config";
 import { UserModel } from "../../data/mongo";
 import { CustomError, LoginUserDto, RegisterUserDto, UserEntity } from "../../domain";
 
@@ -48,9 +48,15 @@ export class AuthService {
             if ( !passwordMatch ) throw CustomError.unauthorized('Invalid password');
 
             const { password, ...userEntity } = UserEntity.fromObject(user);
+
+            const token = await JwtAdapter.generateToken({
+                id: user.id,
+                role: user.role
+            })
     
             return {
-                user: userEntity
+                user: userEntity,
+                token: token
             }
 
         } catch (error) {
