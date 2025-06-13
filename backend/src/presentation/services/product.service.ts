@@ -88,7 +88,7 @@ export class ProductService {
 
             await ProductModel.findByIdAndDelete(product.id)
 
-            return 'Product deleted succesfully'
+            return { message: 'Book deleted succesfully' }
 
         } catch (error) {
             if (error instanceof CustomError) throw error;

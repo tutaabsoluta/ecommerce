@@ -10,7 +10,6 @@ export async function authenticateToken(req: AuthRequest, res: Response, next: N
   const token = authHeader && authHeader.split(' ')[1];
 
   if (!token) {
-    console.log('⛔ No token provided');
     res.status(401).json({ message: 'Token missing' });
     return;
   }
@@ -18,7 +17,6 @@ export async function authenticateToken(req: AuthRequest, res: Response, next: N
   const decoded = await JwtAdapter.validateToken<{ id: string; role: string }>(token);
 
   if (!decoded) {
-    console.log('⛔ Token inválido o expirado');
     res.status(403).json({ message: 'Invalid or expired token' });
     return;
   }
@@ -31,11 +29,9 @@ export function authorizeAdmin(req: AuthRequest, res: Response, next: NextFuncti
 
 
   if (req.user?.role !== 'ADMIN_ROLE') {
-    console.log('⛔ Acceso denegado: no es admin');
     res.status(403).json({ message: 'Access denied. Admins only.' });
     return; 
   }
 
-  console.log('✅ Acceso autorizado: es admin');
   next();
 }

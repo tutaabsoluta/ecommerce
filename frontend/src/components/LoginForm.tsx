@@ -48,17 +48,6 @@ export default function LoginForm() {
     }
   };
 
-  const testProtectedRoute = async () => {
-    try {
-      const response = await api.post("/products");
-      console.log("✅ Acceso correcto:", response.data);
-      toast.success("Acceso correcto a ruta protegida");
-    } catch (error: any) {
-      console.error("❌ Error en ruta protegida:", error.response?.data);
-      toast.error("Error al acceder a ruta protegida");
-    }
-  };
-
   return (
     <form
       className="bg-slate-700 px-8 py-16 rounded-md mt-10"
@@ -112,13 +101,6 @@ export default function LoginForm() {
         className="w-full bg-teal-500 hover:bg-teal-600 transition-all duration-300 text-white uppercase font-bold py-2 rounded-md mt-6"
       >
         Sign In
-      </button>
-      <button
-        type="button"
-        onClick={testProtectedRoute}
-        className="w-full bg-indigo-500 hover:bg-indigo-600 transition-all duration-300 text-white uppercase font-bold py-2 rounded-md mt-4"
-      >
-        Probar Ruta Protegida
       </button>
     </form>
   );
