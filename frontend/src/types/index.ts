@@ -9,3 +9,9 @@ export type RegisterUser = Pick<User, 'email' > & {
     password: string
     password_confirmation: string
 }
+
+export type AuthUser = {
+  user: string;
+  email: string;
+  id?: string;
+}
