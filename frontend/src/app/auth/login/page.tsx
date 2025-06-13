@@ -1,0 +1,17 @@
+
+// src/app/auth/login/page.tsx
+import Link from "next/link";
+
+export default function LoginPage() {
+  return (
+    <>
+      <h1 className="text-4xl text-white font-bold">Login</h1>
+
+      <nav className="mt-10">
+        <Link href="/auth/register" className="text-center text-white text-lg block">
+          Don't have an account? Create one!
+        </Link>
+      </nav>
+    </>
+  );
+}

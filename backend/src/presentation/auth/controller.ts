@@ -46,8 +46,12 @@ export class AuthController {
         }
 
         this.authService.registerUser(registerDto!)
-            .then((user) => res.status(200).json(user))
+            .then((user) => res.status(201).json({
+                message: 'User created successfully',
+                user: user
+            }))
             .catch((error) => this.handleError(error, res))
     }
 
 }
+
