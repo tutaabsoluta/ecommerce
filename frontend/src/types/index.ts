@@ -1,10 +1,11 @@
 
 export type User = {
-    user: string
     email: string
+    password: string
 }
 
-export type RegisterUser = Pick<User, 'email' | 'user' > & {
+export type RegisterUser = Pick<User, 'email' > & {
+    user: string
     password: string
     password_confirmation: string
 }

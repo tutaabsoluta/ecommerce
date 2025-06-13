@@ -1,11 +1,14 @@
 
 // src/app/auth/login/page.tsx
+import LoginForm from "@/components/LoginForm";
 import Link from "next/link";
 
 export default function LoginPage() {
   return (
     <>
       <h1 className="text-4xl text-white font-bold">Login</h1>
+
+      <LoginForm />
 
       <nav className="mt-10">
         <Link href="/auth/register" className="text-center text-white text-lg block">
