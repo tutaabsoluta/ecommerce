@@ -10,6 +10,7 @@ import api from "@/api/axios"
 import UnauthorizedPage from "../unauthorized/page"
 import useProductStore from "@/store/product-store"
 import useUserStore from "@/store/user-store"
+import LoadingSpinner from "@/components/LoadingSpinner"
 
 export default function ProductsPage() {
   const user = useUserStore((state) => state.user)
@@ -46,7 +47,7 @@ export default function ProductsPage() {
   }, [setProducts, user])
 
   if (!isInitialized) {
-    return <div className="p-6 text-white">Loading...</div>
+    return <LoadingSpinner />
   }
 
   if (!user) {
