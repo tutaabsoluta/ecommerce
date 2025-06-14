@@ -4,6 +4,17 @@ This is a simple REST API built with TypeScript and Node.js that provides authen
 
 ---
 
+  ## Technologies Used
+
+- **Node.js**
+- **Express** - Web framework for Node.js
+- **MongoDB** (via **Mongoose**) - NoSQL database
+- **JWT (jsonwebtoken)** - Authentication and authorization
+- **bcryptjs** - Password hashing
+- **CORS** - Cross-Origin Resource Sharing
+- **dotenv** - Environment variables management
+- **TypeScript types** for CORS and JSON Web Token
+
 ## 📦 Installation
 
 1. **Clone the repository and navigate into the project folder**.

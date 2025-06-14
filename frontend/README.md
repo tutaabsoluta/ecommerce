@@ -6,6 +6,14 @@ The routes are protected by a token that verifies the user's role. Upon loading,
 
 ---
 
+## Technologies Used
+- **Next.js 15** - React framework with App Router
+- **React 19** - UI library
+- **Axios** - HTTP client for API requests
+- **React Hook Form** - Form validation and management
+- **Zustand** - State management
+- **Sonner** - Toast notifications
+
 ## 📦 Installation & Setup
 
 1. **Clone the repository and navigate into the project folder**:

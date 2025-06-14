@@ -24,6 +24,40 @@ This is a **fullstack application** with the following key features:
   - Users with **USER_ROLE** can only **view** products.
   - Users with **ADMIN_ROLE** have full permissions to **view, add, edit, and delete** products.
 
+> ⚠️ **Note:** By default, newly registered users have the `USER_ROLE`.  
+  > To test admin functionality, you must manually update the role field in the MongoDB database.  
+  > For example, update the `role` field to `ADMIN_ROLE` in your users collection:
+  >
+  > ```js
+  > db.users.updateOne({ email: "your-email@example.com" }, { $set: { role: "ADMIN_ROLE" } });
+  > ```
+
+  ## Technologies Used
+
+    ### Backend Dependencies
+    - **Node.js**
+    - **Express** - Web framework for Node.js
+    - **MongoDB** (via **Mongoose**) - NoSQL database
+    - **JWT (jsonwebtoken)** - Authentication and authorization
+    - **bcryptjs** - Password hashing
+    - **CORS** - Cross-Origin Resource Sharing
+    - **dotenv** - Environment variables management
+    - **TypeScript types** for CORS and JSON Web Token
+
+    ### Frontend Dependencies
+    - **Next.js 15** - React framework with App Router
+    - **React 19** - UI library
+    - **Axios** - HTTP client for API requests
+    - **React Hook Form** - Form validation and management
+    - **Zustand** - State management
+    - **Sonner** - Toast notifications
+
+    ### Other tools and practices
+    - Entire codebase written in **TypeScript**
+    - Backend designed using **Clean Architecture** and **SOLID principles**
+    - Routes secured with **JWT tokens**
+    - Styling done with **Tailwind CSS**
+
 ## Backend setup
 
 1. **Clone the repository and navigate into the project folder**.
