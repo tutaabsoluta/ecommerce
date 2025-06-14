@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 
 export default function UnauthorizedPage() {
+  
   const router = useRouter();
 
   const handleLoginRedirect = () => {

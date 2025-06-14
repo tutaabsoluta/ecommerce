@@ -1,7 +1,7 @@
 'use client'
-import useUserStore from "@/store/user-store"
-import UnauthorizedPage from "@/app/unauthorized/page"
 import AddBookForm from "@/components/AddBookForm"
+import UnauthorizedPage from "@/app/unauthorized/page"
+import useUserStore from "@/store/user-store"
 
 
 export default function CreateProductPage() {
@@ -18,7 +18,7 @@ export default function CreateProductPage() {
   }
   return (
     <div>
-      <h1 className="text-white text-4xl text-center font-bold">Here you can manage your books</h1>
+      <h1 className="text-6xl text-center mt-12 font-bold text-white tracking-tighter">Add a New Book</h1>
       <AddBookForm />
     </div>
   );

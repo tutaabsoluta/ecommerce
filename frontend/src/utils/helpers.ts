@@ -1,4 +1,3 @@
-
 import { AuthUser } from "@/types";
 
 export function logoutUser(

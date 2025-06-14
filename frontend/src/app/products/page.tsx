@@ -1,15 +1,15 @@
 "use client"
 
+import { isAxiosError } from "axios"
+import { logoutUser, decodeTokenRole } from "@/utils/helpers"
+import { Product } from "@/types"
+import { toast } from "sonner"
 import { useEffect, useMemo } from "react"
 import { useRouter } from "next/navigation"
-import useUserStore from "@/store/user-store"
-import useProductStore from "@/store/product-store"
-import { logoutUser, decodeTokenRole } from "@/utils/helpers"
-import UnauthorizedPage from "../unauthorized/page"
-import { Product } from "@/types"
 import api from "@/api/axios"
-import { toast } from "sonner"
-import { isAxiosError } from "axios"
+import UnauthorizedPage from "../unauthorized/page"
+import useProductStore from "@/store/product-store"
+import useUserStore from "@/store/user-store"
 
 export default function ProductsPage() {
   const user = useUserStore((state) => state.user)
@@ -84,7 +84,7 @@ const handleDelete = async (id: number) => {
 
       <main className="p-6">
         <h1 className="text-6xl font-bold text-white text-center mb-8 mt-16 tracking-tighter">Explore our books</h1>
-        <p className="text-white text-center mb-8">
+        <p className="text-slate-300 text-center mb-8 text-xl">
           Discover worlds beyond pages.{" "}
           <span className="text-red-400 font-bold">
             Exceptional books for one-of-a-kind readers
@@ -95,7 +95,7 @@ const handleDelete = async (id: number) => {
           <div className="flex justify-center mb-10">
             <button 
               onClick={() => router.push("/admin/create")}
-              className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 transition"
+              className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded transition font-bold"
             >
               Add book
             </button>

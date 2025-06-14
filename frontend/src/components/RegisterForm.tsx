@@ -1,10 +1,10 @@
 "use client";
-import { RegisterUser } from "@/types";
 import { ErrorMessage } from "./ErrorMessage";
+import { isAxiosError } from "axios";
+import { RegisterUser } from "@/types";
+import { toast } from "sonner";
 import { useForm } from "react-hook-form"
 import api from "@/api/axios";
-import { toast } from "sonner";
-import { isAxiosError } from "axios";
 
 export default function RegisterForm() {
 
@@ -26,7 +26,7 @@ export default function RegisterForm() {
 
             toast.success(data.message, {
                 style: {
-                    backgroundColor: '#0cf50c',
+                    backgroundColor: '#5bd955',
                     fontSize: '16px',
                     color: 'black'
                 }

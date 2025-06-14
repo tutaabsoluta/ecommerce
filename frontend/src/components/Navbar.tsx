@@ -1,8 +1,8 @@
 "use client"
 
+import { logoutUser } from "@/utils/helpers"
 import { useRouter } from "next/navigation"
 import useUserStore from "@/store/user-store"
-import { logoutUser } from "@/utils/helpers"
 
 export default function Navbar() {
   const user = useUserStore(state => state.user)
@@ -18,9 +18,9 @@ export default function Navbar() {
 
   return (
     <nav className="bg-slate-950 text-white flex justify-between items-center p-4">
-      <div className="font-semibold text-lg">Hello, {user.user}</div>
+      <div className="font-semibold text-lg">Hello, <span className="text-teal-500">{user.user}</span></div>
       <button
-        className="bg-red-500 px-3 py-1 rounded hover:bg-red-600 transition uppercase font-bold"
+        className="bg-red-500 px-3 py-1 rounded hover:bg-red-600 transition font-bold"
         onClick={handleLogout}
       >
         Logout

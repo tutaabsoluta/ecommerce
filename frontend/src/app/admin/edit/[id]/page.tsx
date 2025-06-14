@@ -1,8 +1,7 @@
 "use client"
 
-import { useParams, useRouter } from "next/navigation"
 import { useEffect } from "react"
-import UnauthorizedPage from "@/app/unauthorized/page"
+import { useParams, useRouter } from "next/navigation"
 import EditBookForm from "@/components/EditBookForm"
 import useUserStore from "@/store/user-store"
 
@@ -11,7 +10,6 @@ export default function EditProductPage() {
   const params = useParams()
   const router = useRouter()
 
-  // Aseguramos que id sea string, no array
   const idParam = params.id
   const id = Array.isArray(idParam) ? idParam[0] : idParam
 
@@ -26,12 +24,12 @@ export default function EditProductPage() {
   }
 
   if (!id) {
-    return <div>ID no encontrado</div>
+    return <div>ID not found</div>
   }
 
   return (
     <div className="p-6 text-white">
-      <h1 className="text-2xl">Edit your book here</h1>
+      <h1 className="text-6xl text-center mt-12 font-bold tracking-tighter">Edit Book Details</h1>
       <EditBookForm productId={id} />
     </div>
   )

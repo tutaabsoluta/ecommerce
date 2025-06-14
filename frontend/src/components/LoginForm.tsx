@@ -1,13 +1,13 @@
 "use client";
 
-import { User } from "@/types";
 import { ErrorMessage } from "./ErrorMessage";
-import { useForm } from "react-hook-form";
-import api from "@/api/axios";
-import { toast } from "sonner";
 import { isAxiosError } from "axios";
-import useUserStore from "@/store/user-store";
+import { toast } from "sonner";
+import { useForm } from "react-hook-form";
+import { User } from "@/types";
 import { useRouter } from "next/navigation";
+import api from "@/api/axios";
+import useUserStore from "@/store/user-store";
 
 export default function LoginForm() {
   const setUserAndToken = useUserStore((state) => state.setUserAndToken);
@@ -30,7 +30,13 @@ export default function LoginForm() {
       const { data } = await api.post("/auth/login", formData);
 
       setUserAndToken(data.user, data.token);
-      toast.success("Login exitoso");
+      toast.success("Logged in successfully" , {
+        style: {
+          backgroundColor: '#5bd955',
+          fontSize: '16px',
+          color: 'black'
+        }
+      });
       reset();
 
       router.push("/products");
