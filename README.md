@@ -34,29 +34,29 @@ This is a **fullstack application** with the following key features:
 
   ## Technologies Used
 
-    ### Backend Dependencies
-    - **Node.js**
-    - **Express** - Web framework for Node.js
-    - **MongoDB** (via **Mongoose**) - NoSQL database
-    - **JWT (jsonwebtoken)** - Authentication and authorization
-    - **bcryptjs** - Password hashing
-    - **CORS** - Cross-Origin Resource Sharing
-    - **dotenv** - Environment variables management
-    - **TypeScript types** for CORS and JSON Web Token
+### Backend Dependencies
+- **Node.js**
+- **Express** - Web framework for Node.js
+- **MongoDB** (via **Mongoose**) - NoSQL database
+- **JWT (jsonwebtoken)** - Authentication and authorization
+- **bcryptjs** - Password hashing
+- **CORS** - Cross-Origin Resource Sharing
+- **dotenv** - Environment variables management
+- **TypeScript types** for CORS and JSON Web Token
 
-    ### Frontend Dependencies
-    - **Next.js 15** - React framework with App Router
-    - **React 19** - UI library
-    - **Axios** - HTTP client for API requests
-    - **React Hook Form** - Form validation and management
-    - **Zustand** - State management
-    - **Sonner** - Toast notifications
+### Frontend Dependencies
+- **Next.js 15** - React framework with App Router
+- **React 19** - UI library
+- **Axios** - HTTP client for API requests
+- **React Hook Form** - Form validation and management
+- **Zustand** - State management
+- **Sonner** - Toast notifications
 
-    ### Other tools and practices
-    - Entire codebase written in **TypeScript**
-    - Backend designed using **Clean Architecture** and **SOLID principles**
-    - Routes secured with **JWT tokens**
-    - Styling done with **Tailwind CSS**
+### Other tools and practices
+- Entire codebase written in **TypeScript**
+- Backend designed using **Clean Architecture** and **SOLID principles**
+- Routes secured with **JWT tokens**
+- Styling done with **Tailwind CSS**
 
 ## Backend setup
 
