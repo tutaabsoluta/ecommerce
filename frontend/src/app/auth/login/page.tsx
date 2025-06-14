@@ -11,7 +11,7 @@ export default function LoginPage() {
 
       <nav className="mt-10">
         <Link href="/auth/register" className="text-center text-white text-lg block">
-          Don't have an account? Create one!
+          Don't have an account? <span className="text-sky-500">Create one!</span> 
         </Link>
       </nav>
     </>

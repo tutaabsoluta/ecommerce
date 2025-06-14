@@ -9,10 +9,10 @@ import api from "@/api/axios";
 export default function RegisterForm() {
 
     const initialValues = {
-        user: 'Sergio',
-        email: '538ser@gmail.com',
-        password: 'SergioDuran1!',
-        password_confirmation: 'SergioDuran1!',
+        user: '',
+        email: '',
+        password: '',
+        password_confirmation: '',
     }
 
     const { handleSubmit, register, reset, watch, formState: { errors } } = useForm({ defaultValues: initialValues });

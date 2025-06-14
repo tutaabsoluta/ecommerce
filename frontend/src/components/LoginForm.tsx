@@ -14,8 +14,8 @@ export default function LoginForm() {
   const router = useRouter();
 
   const initialValues = {
-    email: "538ser@gmail.com",
-    password: "SergioDuran1!",
+    email: "",
+    password: "",
   };
 
   const {

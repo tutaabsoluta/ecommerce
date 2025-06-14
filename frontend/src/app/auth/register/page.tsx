@@ -11,7 +11,7 @@ export default function RegisterPage() {
 
       <nav className="mt-10">
         <Link href="/auth/login" className="text-center text-white text-lg block">
-          Already have an account? Login!
+          Already have an account? <span className="text-sky-500">Login!</span>
         </Link>
       </nav>
     </>
