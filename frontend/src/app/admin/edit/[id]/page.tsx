@@ -7,6 +7,7 @@ import useUserStore from "@/store/user-store"
 
 export default function EditProductPage() {
   const user = useUserStore(state => state.user)
+  const isInitialized = useUserStore(state => state.isInitialized)
   const params = useParams()
   const router = useRouter()
 
@@ -14,10 +15,14 @@ export default function EditProductPage() {
   const id = Array.isArray(idParam) ? idParam[0] : idParam
 
   useEffect(() => {
-    if (!user) {
-      router.push("/unauthorized")
+    if (isInitialized && !user) {
+      router.push("/auth/login")
     }
-  }, [user, router])
+  }, [user, isInitialized, router])
+
+  if (!isInitialized) {
+    return <div className="text-white text-center py-20">Loading...</div>
+  }
 
   if (!user) {
     return null

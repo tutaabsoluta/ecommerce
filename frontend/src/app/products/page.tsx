@@ -102,31 +102,31 @@ const handleDelete = async (id: number) => {
           </div>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 place-items-center">
           {products.map((product) => (
             <div
               key={product.id}
-              className="max-w-sm bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition"
+              className="max-w-sm bg-slate-600 rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition"
             >
               <img
                 src={product.imageUrl}
                 alt={product.name}
-                className="w-full h-48 object-contain bg-white"
+                className="w-full h-64 object-cover"
               />
               <div className="p-4">
-                <h2 className="text-lg font-semibold mb-2">{product.name}</h2>
-                <p className="text-gray-700 font-medium text-base mb-1">
+                <h2 className="text-lg font-semibold mb-2 text-teal-400">{product.name}</h2>
+                <p className="text-slate-200  text-base mb-1 font-bold">
                   ${product.price}
                 </p>
                 {product.description && (
-                  <p className="text-sm text-gray-500 line-clamp-2">
+                  <p className="text-sm text-slate-300 line-clamp-2">
                     {product.description}
                   </p>
                 )}
                 {role === "ADMIN_ROLE" && (
-                  <div className="mt-4 flex gap-2">
+                  <div className="mt-4 flex justify-between gap-2">
                     <button
-                      className="bg-yellow-400 text-white px-3 py-1 rounded hover:bg-yellow-500 transition text-sm"
+                      className="bg-indigo-500 text-white px-3 py-1 rounded hover:bg-indigo-600 transition text-sm"
                       onClick={() => router.push(`/admin/edit/${product._id}`)}
                     >
                       Edit book

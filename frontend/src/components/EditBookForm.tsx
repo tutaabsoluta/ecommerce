@@ -17,18 +17,18 @@ export default function EditBookForm({ productId }: EditBookFormProps) {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(true)
 
-  const { 
-    handleSubmit, 
-    register, 
-    reset, 
-    formState: { errors, isSubmitting } 
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors, isSubmitting }
   } = useForm<Product>()
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         const { data } = await api.get<Product>(`/products/${productId}`)
-        reset(data) 
+        reset(data)
         setIsLoading(false)
       } catch (error) {
         toast.error("Error loading product data", {
@@ -157,6 +157,14 @@ export default function EditBookForm({ productId }: EditBookFormProps) {
         className="w-full bg-teal-500 hover:bg-teal-600 transition-all duration-300 text-white uppercase font-bold py-2 rounded-md mt-6 disabled:opacity-50"
       >
         Update Book
+      </button>
+
+      <button
+        type="button"
+        onClick={() => router.push("/products")}
+        className="w-full bg-sky-500 hover:bg-sky-600 transition-all duration-300 text-white uppercase font-semibold py-2 rounded-md mt-6 disabled:opacity-50"
+      >
+        Back to Book List
       </button>
     </form>
   )

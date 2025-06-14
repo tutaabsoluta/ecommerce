@@ -133,6 +133,14 @@ export default function AddBookForm() {
       >
         Add Book
       </button>
+
+      <button
+        type="button"
+        onClick={() => router.push("/products")}
+        className="w-full bg-sky-500 hover:bg-sky-600 transition-all duration-300 text-white uppercase font-semibold py-2 rounded-md mt-6 disabled:opacity-50"
+      >
+        Back to Book List
+      </button>
     </form>
   )
 }
