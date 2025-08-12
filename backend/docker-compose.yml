@@ -7,7 +7,11 @@ services:
     image: mongo:6.0.6
     restart: always
     environment:
+<<<<<<< HEAD
       MONGO_INITDB_ROOT_USERNAME: mongo-user
+=======
+      MONGO_INITDB_ROOT_USERNAME: mongo-tuta
+>>>>>>> cffad1f (Git repo)
       MONGO_INITDB_ROOT_PASSWORD: 123456
     volumes:
       - ./mongo:/data/db

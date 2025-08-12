@@ -55,7 +55,10 @@ export class AuthService {
             })
     
             return {
+<<<<<<< HEAD
                 user: userEntity,
+=======
+>>>>>>> cffad1f (Git repo)
                 token: token
             }
 
