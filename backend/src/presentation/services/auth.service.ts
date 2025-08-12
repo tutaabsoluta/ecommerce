@@ -47,7 +47,7 @@ export class AuthService {
     
             if ( !passwordMatch ) throw CustomError.unauthorized('Invalid password');
 
-            const { password, ...userEntity } = UserEntity.fromObject(user);
+            // const { password, ...userEntity } = UserEntity.fromObject(user);
 
             const token = await JwtAdapter.generateToken({
                 id: user.id,
