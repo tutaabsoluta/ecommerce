@@ -1,0 +1,9 @@
+
+
+node_modules/
+
+/postgres
+
+/mongo
+
+.env
