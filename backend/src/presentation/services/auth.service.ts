@@ -22,11 +22,15 @@ export class AuthService {
 
             await user.save();
 
-            const { password, ...userEntity } = UserEntity.fromObject( user );
+            const { id, email } = user;
 
+            const token = await JwtAdapter.generateToken({
+                id: id
+            });
 
             return {
-                user: userEntity
+                user: { id, email },
+                token
             }
             
         } catch (error) {
@@ -47,11 +51,8 @@ export class AuthService {
     
             if ( !passwordMatch ) throw CustomError.unauthorized('Invalid password');
 
-            // const { password, ...userEntity } = UserEntity.fromObject(user);
-
             const token = await JwtAdapter.generateToken({
                 id: user.id,
-                role: user.role
             })
     
             return {

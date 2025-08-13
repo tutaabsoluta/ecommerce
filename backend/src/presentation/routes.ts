@@ -13,6 +13,6 @@ export class AppRoutes {
         router.use( '/auth', AuthRoutes.routes );
         router.use( '/products', ProductRoutes.routes );
 
-        return router
+        return router;
     }
 }

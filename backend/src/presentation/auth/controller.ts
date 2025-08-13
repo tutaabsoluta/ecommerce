@@ -31,13 +31,13 @@ export class AuthController {
         }
 
         this.authService.loginUser(loginDto!)
-            .then((user) => res.status(200).json(user))
+            .then((token) => res.status(200).json(token))
             .catch((error) => this.handleError(error, res))
-
 
     }
 
     registerUser = (req: Request, res: Response) => {
+
         const [error, registerDto] = RegisterUserDto.create(req.body);
 
         if (error) {
@@ -46,9 +46,9 @@ export class AuthController {
         }
 
         this.authService.registerUser(registerDto!)
-            .then((user) => res.status(201).json({
+            .then(({ token }) => res.status(201).json({
                 message: 'User created successfully',
-                user: user
+                token
             }))
             .catch((error) => this.handleError(error, res))
     }
