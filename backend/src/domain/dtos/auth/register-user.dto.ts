@@ -3,15 +3,18 @@
 export class RegisterUserDto {
 
     constructor(
+        public readonly name: string,
         public readonly email: string,
         public readonly password: string,
     ) { }
 
     static create(object: { [key: string]: any }): [string?, RegisterUserDto?] {
 
-        if (!object) return ['Missing email and password', undefined]
+        if (!object) return ['Missing name, email and password', undefined]
 
-        const { email, password } = object;
+        const { name, email, password } = object;
+
+        if (!name) return ['Missing name'];
 
         if (!email) return ['Missing email'];
 
@@ -22,7 +25,7 @@ export class RegisterUserDto {
         if (password.length < 8) return ['The password is too short'];
 
 
-        return [undefined, new RegisterUserDto( email, password )];
+        return [undefined, new RegisterUserDto(name, email, password)];
 
     }
 }
