@@ -1,13 +1,11 @@
 import { Router } from "express";
 import { ProductsController } from "./controller";
 import { ProductService } from "../services";
-import { authenticateToken, authorizeAdmin } from "../middlewares/auth.middleware";
+import { AuthMiddleware } from "../middlewares/auth.middleware";
 
 
 
 export class ProductRoutes {
-
-
 
     static get routes(): Router {
 
@@ -21,9 +19,9 @@ export class ProductRoutes {
         router.get('/:id', productController.getProductById);
 
         // Admin routes
-        router.post('/', authenticateToken, authorizeAdmin, productController.createProduct);
-        router.put('/:id', authenticateToken, authorizeAdmin, productController.updateProduct);
-        router.delete('/:id', authenticateToken, authorizeAdmin, productController.deleteProduct);
+        router.post('/', [AuthMiddleware.authorizeToken, AuthMiddleware.authorizeRole('ADMIN_ROLE')], productController.createProduct);
+        router.put('/:id', [AuthMiddleware.authorizeToken, AuthMiddleware.authorizeRole('ADMIN_ROLE')], productController.updateProduct);
+        router.delete('/:id', [AuthMiddleware.authorizeToken, AuthMiddleware.authorizeRole('ADMIN_ROLE')], productController.deleteProduct);
 
         return router;
     }

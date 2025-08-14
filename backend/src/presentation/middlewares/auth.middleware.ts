@@ -1,37 +1,79 @@
 import { Request, Response, NextFunction } from 'express';
 import { JwtAdapter } from '../../config';
+import { UserEntity } from '../../domain';
+import { JwtPayload } from 'jsonwebtoken';
+import { UserModel } from '../../data/mongo';
 
-interface AuthRequest extends Request {
-  user?: { id: string; role: string };
+
+declare global {
+  namespace Express {
+    interface Request {
+      user?: UserEntity
+    }
+  }
 }
 
-export async function authenticateToken(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
+export class AuthMiddleware {
 
-  if (!token) {
-    res.status(401).json({ message: 'Token missing' });
-    return;
+  public static authorizeToken = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+
+
+    try {
+      const bearer = req.headers.authorization
+
+      if (!bearer) {
+        res.status(401).json({ error: "There is no Bearer" });
+        return;
+      }
+      const [, token] = bearer!.split(' ');
+
+      if (!token) {
+        res.status(401).json({ error: "There is no Token" });
+        return;
+      }
+      const decoded = await JwtAdapter.validateToken(token);
+
+      if (!decoded) {
+        res.status(401).json({ error: "Invalid Token" })
+        return;
+      }
+
+      const { id } = decoded as JwtPayload;
+
+      const user = await UserModel.findById(id);
+      if (!user) {
+        res.status(404).json({ error: "User not found" });
+        return;
+      }
+
+      const userEntity = await UserEntity.fromObject(user);
+
+
+      req.user = userEntity;
+
+      next();
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+
   }
 
-  const decoded = await JwtAdapter.validateToken<{ id: string; role: string }>(token);
+  static authorizeRole = (role: string) => {
 
-  if (!decoded) {
-    res.status(403).json({ message: 'Invalid or expired token' });
-    return;
+    return (req: Request, res: Response, next: NextFunction): void => {
+      if (!req.user) {
+        res.status(401).json({ message: 'Unauthorized' });
+        return;
+      }
+
+      if (req.user.role !== role) {
+        res.status(403).json({ message: `Access denied. Only Admins can access this resource` });
+        return;
+      }
+
+      next();
+    };
   }
-
-  req.user = decoded;
-  next();
 }
 
-export function authorizeAdmin(req: AuthRequest, res: Response, next: NextFunction): void {
-
-
-  if (req.user?.role !== 'ADMIN_ROLE') {
-    res.status(403).json({ message: 'Access denied. Admins only.' });
-    return; 
-  }
-
-  next();
-}
