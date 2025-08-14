@@ -7,10 +7,8 @@ import { useForm } from "react-hook-form";
 import { User } from "@/types";
 import { useRouter } from "next/navigation";
 import api from "@/api/axios";
-import useUserStore from "@/store/user-store";
 
 export default function LoginForm() {
-  const setUserAndToken = useUserStore((state) => state.setUserAndToken);
   const router = useRouter();
 
   const initialValues = {
@@ -28,8 +26,8 @@ export default function LoginForm() {
   const handleLogin = async (formData: User) => {
     try {
       const { data } = await api.post("/auth/login", formData);
-
-      setUserAndToken(data.user, data.token);
+      console.log(data)
+      localStorage.setItem('AUTH_TOKEN', data.token)
       toast.success("Logged in successfully" , {
         style: {
           backgroundColor: '#5bd955',

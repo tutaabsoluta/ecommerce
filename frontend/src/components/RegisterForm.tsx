@@ -9,10 +9,10 @@ import api from "@/api/axios";
 export default function RegisterForm() {
 
     const initialValues = {
-        user: '',
-        email: '',
-        password: '',
-        password_confirmation: '',
+        name: 'Alonso',
+        email: 'sergiodu03@hotmail.com',
+        password: '12345678',
+        password_confirmation: '12345678',
     }
 
     const { handleSubmit, register, reset, watch, formState: { errors } } = useForm({ defaultValues: initialValues });
@@ -58,19 +58,19 @@ export default function RegisterForm() {
 
             {/* Name */}
             <div className="grid grid-cols-1 mb-2">
-                <label htmlFor="user" className="mb-2 text-slate-200">Name</label>
+                <label htmlFor="name" className="mb-2 text-slate-200">Name</label>
                 <input
                     type="text"
                     className="bg-slate-100 p-2 rounded-md"
                     placeholder="Your name"
-                    id="user"
+                    id="name"
                     {
-                    ...register('user', {
+                    ...register('name', {
                         required: 'The name is required'
                     })
                     }
                 />
-                {errors.user && <ErrorMessage message={`${errors.user.message}`} />}
+                {errors.name && <ErrorMessage message={`${errors.name.message}`} />}
             </div>
             {/* Email */}
             <div className="grid grid-cols-1 mb-2">
@@ -103,10 +103,10 @@ export default function RegisterForm() {
                     {
                     ...register('password', {
                         required: 'The password is required',
-                        pattern: {
-                            value: /^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).+$/,
-                            message: 'The password must have at least a number, symbol and uppercase letter'
-                        },
+                        // pattern: {
+                        //     value: /^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).+$/,
+                        //     message: 'The password must have at least a number, symbol and uppercase letter'
+                        // },
                         minLength: {
                             value: 8,
                             message: 'The password must contain at least 8 characters'

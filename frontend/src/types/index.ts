@@ -5,13 +5,13 @@ export type User = {
 }
 
 export type RegisterUser = Pick<User, 'email' > & {
-    user: string
+    name: string
     password: string
     password_confirmation: string
 }
 
 export type AuthUser = {
-  user: string;
+  name: string;
   email: string;
   id?: string;
 }

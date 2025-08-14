@@ -9,50 +9,46 @@ import { useRouter } from "next/navigation"
 import api from "@/api/axios"
 import UnauthorizedPage from "../unauthorized/page"
 import useProductStore from "@/store/product-store"
-import useUserStore from "@/store/user-store"
 import LoadingSpinner from "@/components/LoadingSpinner"
 
 export default function ProductsPage() {
-  const user = useUserStore((state) => state.user)
-  const token = useUserStore((state) => state.token)
-  const isInitialized = useUserStore((state) => state.isInitialized)
-  const setUserAndToken = useUserStore((state) => state.setUserAndToken)
+
   const router = useRouter()
 
   const products = useProductStore((state) => state.products)
   const setProducts = useProductStore((state) => state.setProducts)
 
-  const handleLogout = () => {
-    logoutUser(setUserAndToken)
-    router.push("/auth/login")
-  }
+  // const handleLogout = () => {
+  //   logoutUser(setUserAndToken)
+  //   router.push("/auth/login")
+  // }
 
-  const role = useMemo(() => {
-    return token ? decodeTokenRole(token) : null
-  }, [token])
+  // const role = useMemo(() => {
+  //   return token ? decodeTokenRole(token) : null
+  // }, [token])
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const { data } = await api.get<Product[]>("/products")
-        setProducts(data)
-      } catch (error) {
-        console.error("Error fetching products:", error)
-      }
-    }
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const { data } = await api.get<Product[]>("/products")
+  //       setProducts(data)
+  //     } catch (error) {
+  //       console.error("Error fetching products:", error)
+  //     }
+  //   }
 
-    if (user) {
-      fetchProducts()
-    }
-  }, [setProducts, user])
+  //   if (user) {
+  //     fetchProducts()
+  //   }
+  // }, [setProducts, user])
 
-  if (!isInitialized) {
-    return <LoadingSpinner />
-  }
+  // if (!isInitialized) {
+  //   return <LoadingSpinner />
+  // }
 
-  if (!user) {
-    return <UnauthorizedPage />
-  }
+  // if (!user) {
+  //   return <UnauthorizedPage />
+  // }
 
 // Delete book
 const handleDelete = async (id: number) => {
@@ -92,7 +88,7 @@ const handleDelete = async (id: number) => {
           </span>
         </p>
 
-        {role === "ADMIN_ROLE" && (
+        {/* {role === "ADMIN_ROLE" && (
           <div className="flex justify-center mb-10">
             <button 
               onClick={() => router.push("/admin/create")}
@@ -101,7 +97,7 @@ const handleDelete = async (id: number) => {
               Add book
             </button>
           </div>
-        )}
+        )} */}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 place-items-center">
           {products.map((product) => (
@@ -124,7 +120,7 @@ const handleDelete = async (id: number) => {
                     {product.description}
                   </p>
                 )}
-                {role === "ADMIN_ROLE" && (
+                {/* {role === "ADMIN_ROLE" && (
                   <div className="mt-4 flex justify-between gap-2">
                     <button
                       className="bg-indigo-500 text-white px-3 py-1 rounded hover:bg-indigo-600 transition text-sm"
@@ -139,7 +135,7 @@ const handleDelete = async (id: number) => {
                       Delete book
                     </button>
                   </div>
-                )}
+                )} */}
               </div>
             </div>
           ))}
