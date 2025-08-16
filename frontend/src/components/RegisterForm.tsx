@@ -5,8 +5,10 @@ import { RegisterUser } from "@/types";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form"
 import api from "@/api/axios";
+import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
+    const router = useRouter();
 
     const initialValues = {
         name: 'Alonso',
@@ -15,12 +17,14 @@ export default function RegisterForm() {
         password_confirmation: '12345678',
     }
 
+
     const { handleSubmit, register, reset, watch, formState: { errors } } = useForm({ defaultValues: initialValues });
 
     const handleRegister = async (formData: RegisterUser) => {
 
         try {
             const { data } = await api.post('/auth/register', formData);
+            localStorage.setItem('AUTH_TOKEN', data.token)
 
             console.log("response data", data);
 
@@ -46,6 +50,7 @@ export default function RegisterForm() {
         }
 
         reset();
+        router.push("/products");
     }
 
     const password = watch('password');
